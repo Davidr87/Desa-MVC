@@ -16,6 +16,7 @@ namespace MVC_1.Models
         public float Bodega { get; set; }
         public string Comentario { get; set; }
 
+        public virtual ICollection<ProveedoresProducto> ProveedorProductos { get; set; }
 
     }
 }

@@ -10,120 +10,108 @@ using MVC_1.Models;
 
 namespace MVC_1.Controllers
 {
-    public class EmpleyesController : Controller
+    public class ProveedoresController : Controller
     {
         private MVC_1Context db = new MVC_1Context();
 
-        // GET: Empleyes
+        // GET: Proveedores
         public ActionResult Index()
         {
-            var empleyes = db.Empleyes.Include(e => e.TipoDocumento);
-            return View(empleyes.ToList());
+            return View(db.Proveedors.ToList());
         }
 
-        // GET: Empleyes/Details/5
+        // GET: Proveedores/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleye empleye = db.Empleyes.Find(id);
-            if (empleye == null)
+            Proveedor proveedor = db.Proveedors.Find(id);
+            if (proveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(empleye);
+            return View(proveedor);
         }
 
-        // GET: Empleyes/Create
+        // GET: Proveedores/Create
         public ActionResult Create()
         {
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion");
             return View();
         }
 
-        // POST: Empleyes/Create
+        // POST: Proveedores/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmpleyeId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,HoraInicio,Correo,URL,TipoDocuemntoID")] Empleye empleye)
+        public ActionResult Create([Bind(Include = "ProveedorID,Nombre,Contacto1,Contacto2,Telefono,Direccion,Correo")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
-                db.Empleyes.Add(empleye);
+                db.Proveedors.Add(proveedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
-            return View(empleye);
+            return View(proveedor);
         }
 
-        // GET: Empleyes/Edit/5
+        // GET: Proveedores/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleye empleye = db.Empleyes.Find(id);
-            if (empleye == null)
+            Proveedor proveedor = db.Proveedors.Find(id);
+            if (proveedor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
-            return View(empleye);
+            return View(proveedor);
         }
 
-        // POST: Empleyes/Edit/5
+        // POST: Proveedores/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmpleyeId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,HoraInicio,Correo,URL,TipoDocuemntoID")] Empleye empleye)
+        public ActionResult Edit([Bind(Include = "ProveedorID,Nombre,Contacto1,Contacto2,Telefono,Direccion,Correo")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleye).State = EntityState.Modified;
+                db.Entry(proveedor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
-            return View(empleye);
+            return View(proveedor);
         }
 
-        // GET: Empleyes/Delete/5
+        // GET: Proveedores/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleye empleye = db.Empleyes.Find(id);
-            if (empleye == null)
+            Proveedor proveedor = db.Proveedors.Find(id);
+            if (proveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(empleye);
+            return View(proveedor);
         }
 
-        // POST: Empleyes/Delete/5
+        // POST: Proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empleye empleye = db.Empleyes.Find(id);
-            db.Empleyes.Remove(empleye);
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Proveedor proveedor = db.Proveedors.Find(id);
+            db.Proveedors.Remove(proveedor);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

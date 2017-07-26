@@ -21,6 +21,6 @@ namespace MVC_1.Models
         public string URL { get; set; }
         public int TipoDocuemntoID { get; set; }
 
-        public virtual TipoDocumento TipoDocumento { get; set; }
+        //public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }
