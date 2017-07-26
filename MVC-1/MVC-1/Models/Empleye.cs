@@ -6,11 +6,11 @@ using System.Web;
 
 namespace MVC_1.Models
 {
-    public class Empleado
+    public class Empleye
     {
-
         [Key]
-        public int EmpleadoId { get; set; }
+        public int EmpleyeId { get; set; }
+
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public decimal Salario { get; set; }
@@ -22,5 +22,7 @@ namespace MVC_1.Models
         public int TipoDocuemntoID { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
+
+
     }
 }

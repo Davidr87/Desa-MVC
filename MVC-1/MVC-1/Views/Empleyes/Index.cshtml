@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_1.Models.Empleado>
+﻿@model IEnumerable<MVC_1.Models.Empleye>
 
 @{
     ViewBag.Title = "Index";
@@ -30,6 +30,9 @@
             @Html.DisplayNameFor(model => model.FehcaNacimiento)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.HoraInicio)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Correo)
         </th>
         <th>
@@ -59,15 +62,18 @@
             @Html.DisplayFor(modelItem => item.FehcaNacimiento)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.HoraInicio)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Correo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.URL)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmpleadoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmpleadoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmpleadoId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpleyeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpleyeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpleyeId })
         </td>
     </tr>
 }

@@ -24,5 +24,9 @@ namespace MVC_1.Models
         public System.Data.Entity.DbSet<MVC_1.Models.TipoDocumento> TipoDocumentoes { get; set; }
 
         public System.Data.Entity.DbSet<MVC_1.Models.Empleado> Empleadoes { get; set; }
+
+        public System.Data.Entity.DbSet<MVC_1.Models.Empleye> Empleyes { get; set; }
+
+        //public System.Data.Entity.DbSet<MVC_1.Models.Empleado> Empleadoes { get; set; }
     }
 }

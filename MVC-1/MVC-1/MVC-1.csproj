@@ -178,7 +178,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\EmpleadoesController.cs" />
+    <Compile Include="Controllers\EmpleyesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Empleye.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MVC_1Context.cs" />
@@ -262,11 +264,16 @@
     <Content Include="Views\TipoDocumentos\Details.cshtml" />
     <Content Include="Views\TipoDocumentos\Edit.cshtml" />
     <Content Include="Views\TipoDocumentos\Index.cshtml" />
-    <Content Include="Views\Empleados\Create.cshtml" />
-    <Content Include="Views\Empleados\Delete.cshtml" />
-    <Content Include="Views\Empleados\Details.cshtml" />
-    <Content Include="Views\Empleados\Edit.cshtml" />
-    <Content Include="Views\Empleados\Index.cshtml" />
+    <Content Include="Views\Empleadoes\Create.cshtml" />
+    <Content Include="Views\Empleadoes\Delete.cshtml" />
+    <Content Include="Views\Empleadoes\Details.cshtml" />
+    <Content Include="Views\Empleadoes\Edit.cshtml" />
+    <Content Include="Views\Empleadoes\Index.cshtml" />
+    <Content Include="Views\Empleyes\Create.cshtml" />
+    <Content Include="Views\Empleyes\Delete.cshtml" />
+    <Content Include="Views\Empleyes\Details.cshtml" />
+    <Content Include="Views\Empleyes\Edit.cshtml" />
+    <Content Include="Views\Empleyes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

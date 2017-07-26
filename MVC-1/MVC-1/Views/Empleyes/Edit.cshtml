@@ -1,4 +1,4 @@
-﻿@model MVC_1.Models.Empleado
+﻿@model MVC_1.Models.Empleye
 
 @{
     ViewBag.Title = "Edit";
@@ -12,10 +12,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Empleado</h4>
+        <h4>Empleye</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.EmpleadoId)
+        @Html.HiddenFor(model => model.EmpleyeId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,6 +54,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FehcaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FehcaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoraInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
             </div>
         </div>
 

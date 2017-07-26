@@ -10,112 +10,112 @@ using MVC_1.Models;
 
 namespace MVC_1.Controllers
 {
-    public class EmpleadosController : Controller
+    public class EmpleyesController : Controller
     {
         private MVC_1Context db = new MVC_1Context();
 
-        // GET: Empleados
+        // GET: Empleyes
         public ActionResult Index()
         {
-            var empleadoes = db.Empleadoes.Include(e => e.TipoDocumento);
-            return View(empleadoes.ToList());
+            var empleyes = db.Empleyes.Include(e => e.TipoDocumento);
+            return View(empleyes.ToList());
         }
 
-        // GET: Empleados/Details/5
+        // GET: Empleyes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleadoes.Find(id);
-            if (empleado == null)
+            Empleye empleye = db.Empleyes.Find(id);
+            if (empleye == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(empleye);
         }
 
-        // GET: Empleados/Create
+        // GET: Empleyes/Create
         public ActionResult Create()
         {
             ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion");
             return View();
         }
 
-        // POST: Empleados/Create
+        // POST: Empleyes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmpleadoId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,Correo,URL,TipoDocuemntoID")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "EmpleyeId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,HoraInicio,Correo,URL,TipoDocuemntoID")] Empleye empleye)
         {
             if (ModelState.IsValid)
             {
-                db.Empleadoes.Add(empleado);
+                db.Empleyes.Add(empleye);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleado.TipoDocuemntoID);
-            return View(empleado);
+            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
+            return View(empleye);
         }
 
-        // GET: Empleados/Edit/5
+        // GET: Empleyes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleadoes.Find(id);
-            if (empleado == null)
+            Empleye empleye = db.Empleyes.Find(id);
+            if (empleye == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleado.TipoDocuemntoID);
-            return View(empleado);
+            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
+            return View(empleye);
         }
 
-        // POST: Empleados/Edit/5
+        // POST: Empleyes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmpleadoId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,Correo,URL,TipoDocuemntoID")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "EmpleyeId,Nombres,Apellidos,Salario,Bono,FehcaNacimiento,HoraInicio,Correo,URL,TipoDocuemntoID")] Empleye empleye)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(empleye).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleado.TipoDocuemntoID);
-            return View(empleado);
+            ViewBag.TipoDocuemntoID = new SelectList(db.TipoDocumentoes, "TipoDocuemntoID", "Descripcion", empleye.TipoDocuemntoID);
+            return View(empleye);
         }
 
-        // GET: Empleados/Delete/5
+        // GET: Empleyes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleadoes.Find(id);
-            if (empleado == null)
+            Empleye empleye = db.Empleyes.Find(id);
+            if (empleye == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(empleye);
         }
 
-        // POST: Empleados/Delete/5
+        // POST: Empleyes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empleado empleado = db.Empleadoes.Find(id);
-            db.Empleadoes.Remove(empleado);
+            Empleye empleye = db.Empleyes.Find(id);
+            db.Empleyes.Remove(empleye);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
