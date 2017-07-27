@@ -15,5 +15,6 @@ namespace MVC_1.Models
 
         public ICollection<Empleye> Empleyes { get; set; }
 
+        public ICollection<Cliente> Clientes { get; set; }
     }
 }
