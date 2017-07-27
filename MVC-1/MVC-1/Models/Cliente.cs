@@ -38,9 +38,14 @@ namespace MVC_1.Models
         [StringLength(30, ErrorMessage = "El {0} nombre debe contener entre {2} a {1} caracteres", MinimumLength = 3)]
         public string Documento { get; set; }
 
+
+        [Display(Name = "Tipo de Docuemnto")]
+        [Required(ErrorMessage = "Por Favor completar {0}")]
         public int TipoDocuemntoID { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
+
+        public virtual ICollection<Pedido> Pedido { get; set; }
 
     }
 }

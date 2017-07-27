@@ -189,12 +189,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\OrderViws.cs" />
+    <Compile Include="Models\PedidoProductos.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\DetallesPedidos.cs" />
     <Compile Include="Models\Empleye.cs" />
+    <Compile Include="Models\EstadoPedido.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\MVC_1Context.cs" />
+    <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\ProveedoresProducto.cs" />

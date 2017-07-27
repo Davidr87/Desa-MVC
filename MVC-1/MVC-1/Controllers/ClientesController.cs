@@ -40,7 +40,7 @@ namespace MVC_1.Controllers
         public ActionResult Create()
         {
             var list = db.TipoDocumentoes.ToList();
-            list.Add(new TipoDocumento { TipoDocuemntoID = 0, Descripcion = "[Seleccione un tipo de documento...]" });
+            list.Add(new TipoDocumento { TipoDocuemntoID = 0, Descripcion = "[Por favor seleccione el tipo de documento]" });
             list = list.OrderBy(c=> c.Descripcion).ToList();
             ViewBag.TipoDocuemntoID = new SelectList(list, "TipoDocuemntoID", "Descripcion");
             return View();
