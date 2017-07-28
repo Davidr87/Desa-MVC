@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -44,6 +45,9 @@ namespace MVC_1.Models
         public int TipoDocuemntoID { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
+
+
+        public string NombreCompleto { get { return string.Format("{0}{1}", Nombres, Apellidos); } } 
 
         public virtual ICollection<Pedido> Pedido { get; set; }
 
