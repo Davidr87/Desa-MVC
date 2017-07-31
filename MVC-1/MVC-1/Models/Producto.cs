@@ -23,6 +23,9 @@ namespace MVC_1.Models
         public decimal Precio { get; set; }
 
         [Display(Name = "Ultima Compra")]
+        [Required(ErrorMessage = "Por Favor completar {0}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime FechaUltimaCompras { get; set; }
 
         [Required(ErrorMessage = "Por Favor completar {0}")]
