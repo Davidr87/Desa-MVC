@@ -15,7 +15,7 @@ namespace MVC_1.Controllers
        {
             var vistaPedidos = new VistaPedidos();
             vistaPedidos.Cliente = new Cliente();
-            vistaPedidos.Productos = new List<Producto>();
+            vistaPedidos.Productos = new List<PedidoProductos>();
             Session["vistaPedidos"] = vistaPedidos;
 
             var list = db.Clientes.ToList();
@@ -31,9 +31,9 @@ namespace MVC_1.Controllers
         {
            
             var list = db.Clientes.ToList();
-            list.Add(new Cliente { ClienteID = 0, Nombres = "[Pro favor seleccione cliente]" });
             list = list.OrderBy(c => c.NombreCompleto).ToList();
-            ViewBag.ClienteID = new SelectList(list, "ClienteID", "NombreCompleto");
+            list.Add(new Cliente { ClienteID = 0, Nombres = "[Pro favor seleccione cliente]" });
+           ViewBag.ClienteID = new SelectList(list, "ClienteID", "NombreCompleto");
 
 
             return View(vistaPedidos);
@@ -43,7 +43,7 @@ namespace MVC_1.Controllers
         {
          
 
-            var list = db.Productoes.ToList();
+            var list = db.Productos.ToList();
             list.Add(new PedidoProductos { id = 0, Descripcion = "[Pro favor seleccione producto]" });
             list = list.OrderBy(p => p.Descripcion).ToList();
             ViewBag.id = new SelectList(list, "id", "Descripcion");
@@ -60,38 +60,54 @@ namespace MVC_1.Controllers
 
             if (id == 0)
             {
-                var list = db.Productoes.ToList();
-                list.Add(new PedidoProductos { id = 0, Descripcion = "[Pro favor seleccione producto]" });
-                list = list.OrderBy(p => p.Descripcion).ToList();
-                ViewBag.id = new SelectList(list, "id", "Descripcion");
+                var listb= db.Productos.ToList();
+                listb.Add(new PedidoProductos { id = 0, Descripcion = "[Pro favor seleccione producto]" });
+                listb = listb.OrderBy(p => p.Descripcion).ToList();
+                ViewBag.id = new SelectList(listb, "id", "Descripcion");
                 ViewBag.Error = "Debe seleccionar un producto";
 
                 return View(pedidoProductos);
             
             }
 
-            var producto = db.Productoes.Find(id);
+            var producto = db.Productos.Find(id);
             if(producto==null)
             {
-                var list = db.Productoes.ToList();
-                list.Add(new PedidoProductos { id = 0, Descripcion = "[Pro favor seleccione producto]" });
-                list = list.OrderBy(p => p.Descripcion).ToList();
-                ViewBag.id = new SelectList(list, "id", "Descripcion");
+                var listC = db.Productos.ToList();
+                listC.Add(new PedidoProductos { id = 0, Descripcion = "[Pro favor seleccione producto]" });
+                listC = listC.OrderBy(p => p.Descripcion).ToList();
+                ViewBag.id = new SelectList(listC, "id", "Descripcion");
                 ViewBag.Error = "Producto no existe";
 
                 return View(pedidoProductos);
 
             }
-            pedidoProductos = new PedidoProductos
-            {
-                Descripcion=producto.Descripcion,
-                Precio = producto.Precio,
-                id = producto.id,
-                Cantidad = float.Parse(Request["Cantidad"]),
 
-            };
-            vistaPedidos.Productos.Add(pedidoProductos);        
-            return View("AgregarPedido",vistaPedidos);
+            pedidoProductos = vistaPedidos.Productos.Find(p=>p.id==id );
+
+            if (pedidoProductos == null)
+            {
+                pedidoProductos = new PedidoProductos
+                {
+                    Descripcion = producto.Descripcion,
+                    Precio = producto.Precio,
+                    id = producto.id,
+                    Cantidad = float.Parse(Request["Cantidad"]),
+
+                };
+                vistaPedidos.Productos.Add(pedidoProductos);
+            }
+            else
+            {
+                pedidoProductos.Cantidad += float.Parse(Request["Cantidad"]);
+            }
+
+            var list = db.Clientes.ToList();
+            list.Add(new Cliente { ClienteID = 0, Nombres = "[Pro favor seleccione cliente]" });
+            list = list.OrderBy(c => c.NombreCompleto).ToList();
+            ViewBag.ClienteID = new SelectList(list, "ClienteID", "NombreCompleto");
+
+            return View("NuevoPedido", vistaPedidos);
         }
 
         protected override void Dispose(bool disposing)

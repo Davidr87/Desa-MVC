@@ -16,6 +16,6 @@ namespace MVC_1.Models
 
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
-        public decimal value { get { return Precio * (decimal)Cantidad; } }
+        public decimal valor { get { return Precio * (decimal)Cantidad; } }
     }
 }

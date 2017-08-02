@@ -17,7 +17,7 @@ namespace MVC_1.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            return View(db.Productoes.ToList());
+            return View(db.Productos.ToList());
         }
 
         // GET: Productos/Details/5
@@ -27,7 +27,7 @@ namespace MVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productoes.Find(id);
+            Producto producto = db.Productos.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace MVC_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Productoes.Add(producto);
+                db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace MVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productoes.Find(id);
+            Producto producto = db.Productos.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace MVC_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productoes.Find(id);
+            Producto producto = db.Productos.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace MVC_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Productoes.Find(id);
-            db.Productoes.Remove(producto);
+            Producto producto = db.Productos.Find(id);
+            db.Productos.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

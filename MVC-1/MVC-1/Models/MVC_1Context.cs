@@ -25,7 +25,7 @@ namespace MVC_1.Models
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
-        public System.Data.Entity.DbSet<MVC_1.Models.Producto> Productoes { get; set; }
+        public System.Data.Entity.DbSet<MVC_1.Models.Producto> Productos { get; set; }
 
         public System.Data.Entity.DbSet<MVC_1.Models.TipoDocumento> TipoDocumentoes { get; set; }
 

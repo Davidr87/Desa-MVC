@@ -1,5 +1,7 @@
-﻿@model MVC_1.Models.ViewModels.VistaPedidos
-@{
+﻿
+@model MVC_1.Models.ViewModels.VistaPedidos
+
+@*@*@*@{
     ViewBag.Title = "NuevoPedido";
 }
 
@@ -19,56 +21,51 @@
             </div>
         </div>
 
-  
-
  @Html.ActionLink("Agrega Producto", "AgregarPedido", new { },new {@class="btn btn-primary" })
  <input type="submit" value="Create" class="btn btn-default" />
-
+        
     </div>
 }
 
+<h2>DETALLES DE PEDIDOS</h2>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Producto.Descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.Producto.Precio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaUltimaCompras)
+            @Html.DisplayNameFor(model => model.Producto.Cantidad)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Bodega)
+            @Html.DisplayNameFor(model => model.Producto.valor)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comentario)
-        </th>
+
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @for (int i = 0; i < Model.Productos.Count; i++)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @Html.DisplayFor(modelItem => Model.Productos[i].Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
+                @Html.DisplayFor(modelItem => Model.Productos[i].Precio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaUltimaCompras)
+                @Html.DisplayFor(modelItem => Model.Productos[i].Cantidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Bodega)
+                @Html.DisplayFor(modelItem => Model.Productos[i].valor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Comentario)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Productos[i].id }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Productos[i].id })
             </td>
         </tr>
+    }
 </table>
