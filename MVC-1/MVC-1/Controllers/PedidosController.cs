@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Data;
 using System.Linq;
+using System;
 
 namespace MVC_1.Controllers
 {
-    public class PedidosController : Controller
+    public class PedidosController : Controller 
     {
         private MVC_1Context db = new MVC_1Context();
         // GET: Pedidos87
@@ -16,6 +17,7 @@ namespace MVC_1.Controllers
             var vistaPedidos = new VistaPedidos();
             vistaPedidos.Cliente = new Cliente();
             vistaPedidos.Productos = new List<PedidoProductos>();
+
             Session["vistaPedidos"] = vistaPedidos;
 
             var list = db.Clientes.ToList();
@@ -29,14 +31,74 @@ namespace MVC_1.Controllers
         [HttpPost]
         public ActionResult NuevoPedido(VistaPedidos vistaPedidos)
         {
-           
-            var list = db.Clientes.ToList();
-            list = list.OrderBy(c => c.NombreCompleto).ToList();
-            list.Add(new Cliente { ClienteID = 0, Nombres = "[Pro favor seleccione cliente]" });
-           ViewBag.ClienteID = new SelectList(list, "ClienteID", "NombreCompleto");
+            vistaPedidos = Session["vistaPedidos"] as VistaPedidos;
 
+
+            var clienteID =int .Parse(Request["ClienteID"]);
+
+
+            if (clienteID == 0)
+            {
+            
+                var listc = db.Clientes.ToList();
+                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
+                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                ViewBag.Error = "Debe seleccionar un Cliente";
+
+                return View(vistaPedidos);
+
+            }
+
+            var cliente = db.Clientes.Find(clienteID);
+
+            if (cliente == null)
+            {
+                var listc = db.Clientes.ToList();
+                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
+                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                ViewBag.Error = "Debe seleccionar un Cliente";
+                ViewBag.Error = "Cliente no existe";
+
+                return View(vistaPedidos);
+
+            }
+
+            if (vistaPedidos.Productos.Count == 0)
+            {
+                var listc = db.Clientes.ToList();
+                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
+                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                ViewBag.Error = "Debe seleccionar un Detalle";
+
+                return View(vistaPedidos);
+            }
+
+            var pedido = new Pedido
+            {
+                ClienteID=clienteID,
+                FechaOrden= DateTime.Now,
+                EstadoPedido=EstadoPedido.Creada
+            };
+            db.Pedido.Add(pedido);
+            db.SaveChanges();
+
+            var pedidoID = db.Pedido.ToList().Select(p => p.PedidoID).Max();
+
+            foreach (var item in vistaPedidos.Productos)
+            {
+                var detallesPedido = new DetallesPedidos
+                {
+                    Descripcion=item.Descripcion,
+                    Precio = item.Precio,
+                    Cantidad = item.Cantidad,
+                    PedidoID= pedidoID,
+                };
+
+            }
 
             return View(vistaPedidos);
+
+         
         }
 
         public ActionResult AgregarPedido()
