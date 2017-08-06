@@ -22,12 +22,61 @@ namespace MVC_1
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Models.MVC_1Context,Migrations.Configuration>());
             ApplicationDbContext db = new ApplicationDbContext();
             CreateRoles(db);
+            CrearSuperUsuario(db);
+            AgregarPermisoSuperUsiario(db);
             db.Dispose();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void AgregarPermisoSuperUsiario(ApplicationDbContext db)
+        {
+            var UserPrincipal = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var rolePrincipal = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var usuario = UserPrincipal.FindByName("davidromeromesa@yahoo.com");
+
+            if (!UserPrincipal.IsInRole(usuario.Id, "Ver"))
+            {
+                UserPrincipal.AddToRole(usuario.Id, "Ver");
+            }
+
+            if (!UserPrincipal.IsInRole(usuario.Id, "Editar"))
+            {
+                UserPrincipal.AddToRole(usuario.Id, "Editar");
+            }
+
+            if (!UserPrincipal.IsInRole(usuario.Id, "Crear"))
+            {
+                UserPrincipal.AddToRole(usuario.Id, "Crear");
+            }
+
+            if (!UserPrincipal.IsInRole(usuario.Id, "Eliminar"))
+            {
+                UserPrincipal.AddToRole(usuario.Id, "Eliminar");
+            }
+
+        }
+
+        private void CrearSuperUsuario(ApplicationDbContext db)
+        {
+            var UserPrincipal = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var usuario = UserPrincipal.FindByName("davidromeromesa@yahoo.com");
+
+            if (usuario == null)
+            {
+                usuario = new ApplicationUser
+                {
+                    UserName = "davidromeromesa@yahoo.com",
+                    Email = "davidromeromesa@yahoo.com"
+
+                };
+                UserPrincipal.Create(usuario, "David123.");
+
+            }
+
         }
 
         private void CreateRoles(ApplicationDbContext db)

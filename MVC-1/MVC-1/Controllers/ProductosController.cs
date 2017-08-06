@@ -10,21 +10,23 @@ using MVC_1.Models;
 
 namespace MVC_1.Controllers
 {
-    [Authorize(Users ="davidromeromesa@gmail.com")]
+    [Authorize(Roles = "Ver")]
     public class ProductosController : Controller
     {
         
         private MVC_1Context db = new MVC_1Context();
-        
+
         // GET: Productos
-       
+        [Authorize(Roles = "Ver")]
+
         public ActionResult Index()
         {
             return View(db.Productos.ToList());
         }
 
-        // GET: Productos/Details/5
-       
+        // GET Productos/Details
+        [Authorize(Roles = "Ver")]
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +42,7 @@ namespace MVC_1.Controllers
         }
 
         // GET: Productos/Create
-     
+        [Authorize(Roles = "Crear")]
         public ActionResult Create()
         {
             return View();
@@ -64,7 +66,7 @@ namespace MVC_1.Controllers
         }
 
         // GET: Productos/Edit/5
-        
+        [Authorize(Roles = "Editar")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,7 +98,7 @@ namespace MVC_1.Controllers
         }
 
         // GET: Productos/Delete/5
-        
+        [Authorize(Roles = "Eliminar")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
