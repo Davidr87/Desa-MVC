@@ -6,8 +6,10 @@
 }
 
 <h2>Nuevo Pedido</h2>
+<h3>@ViewBag.Mensaje</h3>
+<h3>@ViewBag.Error</h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("NuevoPedido", "Pedidos", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

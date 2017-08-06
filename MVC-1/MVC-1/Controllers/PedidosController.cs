@@ -17,7 +17,6 @@ namespace MVC_1.Controllers
             var vistaPedidos = new VistaPedidos();
             vistaPedidos.Cliente = new Cliente();
             vistaPedidos.Productos = new List<PedidoProductos>();
-
             Session["vistaPedidos"] = vistaPedidos;
 
             var list = db.Clientes.ToList();
@@ -40,9 +39,10 @@ namespace MVC_1.Controllers
             if (clienteID == 0)
             {
             
-                var listc = db.Clientes.ToList();
-                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
-                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                var listd = db.Clientes.ToList();
+                listd = listd.OrderBy(c => c.NombreCompleto).ToList();
+                listd.Add(new Cliente { ClienteID = 0, Nombres = "[Por favor selecionar cliente]" });
+                ViewBag.ClienteID = new SelectList(listd, "ClienteID", "NombreCompleto");
                 ViewBag.Error = "Debe seleccionar un Cliente";
 
                 return View(vistaPedidos);
@@ -53,11 +53,11 @@ namespace MVC_1.Controllers
 
             if (cliente == null)
             {
-                var listc = db.Clientes.ToList();
-                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
-                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                var liste = db.Clientes.ToList();
+                liste = liste.OrderBy(c => c.NombreCompleto).ToList();
+                ViewBag.ClienteID = new SelectList(liste, "ClienteID", "NombreCompleto");
                 ViewBag.Error = "Debe seleccionar un Cliente";
-                ViewBag.Error = "Cliente no existe";
+              
 
                 return View(vistaPedidos);
 
@@ -65,37 +65,74 @@ namespace MVC_1.Controllers
 
             if (vistaPedidos.Productos.Count == 0)
             {
-                var listc = db.Clientes.ToList();
-                listc = listc.OrderBy(c => c.NombreCompleto).ToList();
-                ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+                var listf = db.Clientes.ToList();
+                listf.Add(new Cliente { ClienteID = 0, Nombres = "[Por favor selecionar cliente]" });
+                listf = listf.OrderBy(c => c.NombreCompleto).ToList();
+                ViewBag.ClienteID = new SelectList(listf, "ClienteID", "NombreCompleto");
                 ViewBag.Error = "Debe seleccionar un Detalle";
 
                 return View(vistaPedidos);
             }
 
-            var pedido = new Pedido
+            //GRABAR PEDIDO
+            int pedidoID = 0;
+            using (var transacion = db.Database.BeginTransaction())
             {
-                ClienteID=clienteID,
-                FechaOrden= DateTime.Now,
-                EstadoPedido=EstadoPedido.Creada
-            };
-            db.Pedido.Add(pedido);
-            db.SaveChanges();
-
-            var pedidoID = db.Pedido.ToList().Select(p => p.PedidoID).Max();
-
-            foreach (var item in vistaPedidos.Productos)
-            {
-                var detallesPedido = new DetallesPedidos
+                try
                 {
-                    Descripcion=item.Descripcion,
-                    Precio = item.Precio,
-                    Cantidad = item.Cantidad,
-                    PedidoID= pedidoID,
-                };
+                    var pedido = new Pedido
+                    {
+                        ClienteID = clienteID,
+                        FechaOrden = DateTime.Now,
+                        EstadoPedido = EstadoPedido.Creada
+                    };
+                    db.Pedido.Add(pedido);
+                    db.SaveChanges();
 
+                    pedidoID = db.Pedido.ToList().Select(p => p.PedidoID).Max();
+
+                    foreach (var item in vistaPedidos.Productos)
+                    {
+                        var detallesPedido = new DetallesPedidos
+                        {
+                            id = item.id,
+                            Descripcion = item.Descripcion,
+                            Precio = item.Precio,
+                            Cantidad = item.Cantidad,
+                            PedidoID = pedidoID,
+                        };
+                        db.DetallesPedidos.Add(detallesPedido);
+                        db.SaveChanges();
+                    }
+                    transacion.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transacion.Rollback();
+                    ViewBag.Error = "ERROR" + ex.Message;
+                    var list = db.Clientes.ToList();
+                    list.Add(new Cliente { ClienteID = 0, Nombres = "[Pro favor seleccione cliente]" });
+                    list = list.OrderBy(c => c.NombreCompleto).ToList();
+                    ViewBag.ClienteID = new SelectList(list, "ClienteID", "NombreCompleto");
+
+                    return View(vistaPedidos);
+                }
+
+
+                
             }
+            ViewBag.Mensaje = string.Format("El Pedido {0} esta guardado ", pedidoID);
 
+            var listc = db.Clientes.ToList();
+            listc.Add(new Cliente { ClienteID = 0, Nombres = "[Por favor selecionar cliente]" });
+            listc = listc.OrderBy(c => c.NombreCompleto).ToList();
+            ViewBag.ClienteID = new SelectList(listc, "ClienteID", "NombreCompleto");
+            //ViewBag.Error = "Debe seleccionar un Detalle";
+
+            vistaPedidos = new VistaPedidos();
+            vistaPedidos.Cliente = new Cliente();
+            vistaPedidos.Productos = new List<PedidoProductos>();
+            Session["vistaPedidos"] = vistaPedidos;
             return View(vistaPedidos);
 
          
