@@ -54,9 +54,9 @@ namespace MVC_1
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "808695709296878",
+               appSecret: "22a501a6a1c7d0049b8f0d91a7a8396d");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
