@@ -299,6 +299,8 @@
     <Content Include="Views\Pedidos\NuevoPedido.cshtml" />
     <Content Include="Views\Pedidos\AgregarPedido.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Roles.cshtml" />
+    <Content Include="Views\Usuarios\agregarroles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
