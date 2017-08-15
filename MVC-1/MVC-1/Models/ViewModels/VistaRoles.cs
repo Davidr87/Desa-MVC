@@ -11,5 +11,6 @@ namespace MVC_1.Models.ViewModels
         public string RoleID { get; set; }
 
         public string Nombre { get; set; }
+
     }
 }

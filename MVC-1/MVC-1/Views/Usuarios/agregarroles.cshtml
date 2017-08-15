@@ -1,12 +1,12 @@
 ﻿@model MVC_1.Models.ViewModels.VistaUsuario
 @{
-    ViewBag.Title = "Agregar Roles";
+    ViewBag.Title = "agregarroles";
 }
 
 <h2>Agregar rolaes para usuario: @Model.Nombre</h2>
 <h3>@ViewBag.Error</h3>
 
-@using (Html.BeginForm("agregarroles", "Usuarios", FormMethod.Post))
+@using (Html.BeginForm("agregarroles", "Usuarios", new { UsuarioID = Model.UsuarioID }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

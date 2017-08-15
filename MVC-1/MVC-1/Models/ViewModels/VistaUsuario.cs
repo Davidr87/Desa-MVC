@@ -15,5 +15,6 @@ namespace MVC_1.Models.ViewModels
         public string Correo { get; set; }
         public RoleView Role { get; set; }
         public List<RoleView> Roles { get; set; }
+
     }
 }

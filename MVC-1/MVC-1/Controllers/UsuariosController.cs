@@ -58,13 +58,13 @@ namespace MVC_1.Controllers
             {
                 var role = roles.Find(r => r.Id == item.RoleId);
 
-                var Vistasrole = new RoleView
+                var Vistarole = new RoleView
                 {
                     Nombre = role.Name,
                     RoleID = role.Id
                 };
 
-                Vistasroles.Add(Vistasrole);
+                Vistasroles.Add(Vistarole);
             }
             var usuarioVista = new VistaUsuario
             {
@@ -108,6 +108,123 @@ namespace MVC_1.Controllers
 
 
             return View(usuarioVista);
+        }
+
+        [HttpPost]
+
+        public ActionResult agregarroles(string UsuarioID, FormCollection form)
+        {
+            var RoleID = Request["RoleID"];
+
+            var rolePrincipal = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var UserPrincipal = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var usuarios = UserPrincipal.Users.ToList();
+            var usuario = usuarios.Find(u => u.Id == UsuarioID);
+            
+            var usuarioVista = new VistaUsuario
+            {
+                Correo = usuario.Email,
+                Nombre = usuario.UserName,
+                UsuarioID = usuario.Id
+            };
+
+            if (string.IsNullOrEmpty(RoleID))
+            {
+                ViewBag.Error = "Tu debes selecionar un role";
+                var list = rolePrincipal.Roles.ToList();
+                list.Add(new IdentityRole { Id = "", Name = "[Seleccione un Role]" });
+                list = list.OrderBy(r => r.Name).ToList();
+                ViewBag.RoleID = new SelectList(list, "Id", "Name");
+                return View(usuarioVista);
+            }
+
+            var roles = rolePrincipal.Roles.ToList();
+            var role = roles.Find(r=>r.Id== RoleID);
+
+            if (!UserPrincipal.IsInRole(UsuarioID, role.Name))
+            {
+                UserPrincipal.AddToRole(UsuarioID, role.Name);
+            }
+
+            var VistaRoles = new List<RoleView>();
+
+            foreach (var item in usuario.Roles)
+            {
+                role = roles.Find(r => r.Id == item.RoleId);
+
+
+                var Vistarole = new RoleView
+                {
+                    Nombre = role.Name,
+                    RoleID = role.Id
+                };
+
+                VistaRoles.Add(Vistarole);
+                
+            }
+
+            usuarioVista = new VistaUsuario
+            {
+                Correo = usuario.Email,
+                Nombre = usuario.UserName,
+                Roles = VistaRoles,
+                UsuarioID = usuario.Id
+            };
+
+            return View("Roles", usuarioVista);
+        }
+
+
+        public ActionResult Borrar(string UsuarioID, string RoleID)
+        {
+            if (string.IsNullOrEmpty(UsuarioID) || string.IsNullOrEmpty(RoleID) )
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var rolePrincipal = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var UserPrincipal = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            var usuario = UserPrincipal.Users.ToList().Find(u=>u.Id== UsuarioID);
+            var role = rolePrincipal.Roles.ToList().Find(r => r.Id == RoleID);
+
+            //ELIMINA EL ROL DEL USUARIO
+            if (UserPrincipal.IsInRole(usuario.Id, role.Name))
+            {
+                UserPrincipal.RemoveFromRoles(usuario.Id, role.Name);
+            }
+
+            //PRERPARA LA VISTA PARA SER RETORMADA 
+
+            var usuarios = UserPrincipal.Users.ToList();
+            var roles = rolePrincipal.Roles.ToList();
+            var VistaRoles = new List<RoleView>();
+
+            foreach (var item in usuario.Roles)
+            {
+                role = roles.Find(r => r.Id == item.RoleId);
+
+
+                var Vistarole = new RoleView
+                {
+                    Nombre = role.Name,
+                    RoleID = role.Id
+                };
+
+                VistaRoles.Add(Vistarole);
+
+            }
+
+            var usuarioVista = new VistaUsuario
+            {
+                Correo = usuario.Email,
+                Nombre = usuario.UserName,
+                Roles = VistaRoles,
+                UsuarioID = usuario.Id
+            };
+
+            return View("Roles", usuarioVista);
+
         }
         protected override void Dispose(bool disposing)
         {

@@ -22,7 +22,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Borrar", "Borrar", new { User = Model, RoleID = Model.Roles[i].RoleID })
+                @Html.ActionLink("Borrar", "Borrar", new { UsuarioID = Model.UsuarioID, RoleID = Model.Roles[i].RoleID })
             </td>
         </tr>
     }
