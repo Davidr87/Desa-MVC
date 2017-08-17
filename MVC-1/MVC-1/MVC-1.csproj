@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Content\AJAXConcepController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EmpleyesController.cs" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Roles.cshtml" />
     <Content Include="Views\Usuarios\agregarroles.cshtml" />
+    <Content Include="Views\AJAXConcep\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

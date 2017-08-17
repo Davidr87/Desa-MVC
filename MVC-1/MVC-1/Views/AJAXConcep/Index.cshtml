@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>AJAX Concepto</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("txtN", 0);
+    <button id="btnCalcular">Calcular</button><br/>
+    <div id="lblMensaje"></div>
+}
+
