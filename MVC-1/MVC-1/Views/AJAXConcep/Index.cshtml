@@ -10,5 +10,35 @@
     @Html.TextBox("txtN", 0);
     <button id="btnCalcular">Calcular</button><br/>
     <div id="lblMensaje"></div>
+
+
+    @section Scripts{
+        
+        <script type="text/javascript">
+            $(function () {
+                $("#btnCalcular").on("click", function (){
+                    $.ajax({
+                        type: "POST",
+
+                        url: '@Url.Action("JsonFactorial")',
+                        data: { n: $('#txtN').val() },
+                        datatype: 'json',
+                        cahce: false
+                    })
+                    .success(function (data) {
+                        $("#lblMensaje").html(data.Factorial);
+                    })
+                    .error(function (xhr, ajaxOptions, thrownError){
+                        $("#lblMensaje").html("Ocurrio un error");
+
+                    });
+                    return false;
+
+                });
+
+            });
+        </script>
+        }
+        
 }
 

@@ -39,5 +39,7 @@ namespace MVC_1.Models
         public System.Data.Entity.DbSet<MVC_1.Models.Pedido> Pedido { get; set; }
 
         public System.Data.Entity.DbSet<MVC_1.Models.DetallesPedidos> DetallesPedidos { get; set; }
+
+        public System.Data.Entity.DbSet<MVC_1.Models.Categorias> Categorias { get; set; }
     }
 }

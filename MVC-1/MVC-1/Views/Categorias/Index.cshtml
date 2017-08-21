@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorias</h2>
+
+@using (Html.BeginForm())
+{
+<button id="btnGetCategorias">Mostrar todas las Categorias</button>
+<button id="btnGetCategoria">Mostrar una Categorias</button>
+<button id="btnAddCategoria">Agregar Categorias</button>
+<button id="btnUpdtaeCategoria">Actualizar Categorias</button>
+<button id="btnBorrarCategoria">Borrar Categorias</button>
+<br /><br />
+<input id="txtCategoriaID" type="text" placeholder="Categoria ID" />
+<input id="txtDescripcion" type="text" placeholder="Categoria Descripcion" />
+<br /><br />
+<div id="lblMessage"></div>
+
+
+}
