@@ -1,0 +1,909 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVC_1Context.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Documento" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TipoDocuemntoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallesPedidos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetallesPedidosID" Type="int" Nullable="false" />
+          <Property Name="PedidoID" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="real" Nullable="false" />
+          <Property Name="Producto_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleyes">
+          <Key>
+            <PropertyRef Name="EmpleyeId" />
+          </Key>
+          <Property Name="EmpleyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Bono" Type="int" Nullable="false" />
+          <Property Name="FehcaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="HoraInicio" Type="datetime" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="30" />
+          <Property Name="TipoDocuemntoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedidoes">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaOrden" Type="datetime" Nullable="false" />
+          <Property Name="ClienteID" Type="int" Nullable="false" />
+          <Property Name="EstadoPedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productoes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaUltimaCompras" Type="datetime" Nullable="false" />
+          <Property Name="Bodega" Type="real" Nullable="false" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="120" />
+          <Property Name="Cantidad" Type="real" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProveedoresProductoes">
+          <Key>
+            <PropertyRef Name="ProveedorProductoID" />
+          </Key>
+          <Property Name="ProveedorProductoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProveedorID" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedors">
+          <Key>
+            <PropertyRef Name="ProveedorID" />
+          </Key>
+          <Property Name="ProveedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contacto1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contacto2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDocumentoes">
+          <Key>
+            <PropertyRef Name="TipoDocuemntoID" />
+          </Key>
+          <Property Name="TipoDocuemntoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID">
+          <End Role="TipoDocumentoes" Type="Self.TipoDocumentoes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumentoes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID">
+          <End Role="Pedidoes" Type="Self.Pedidoes" Multiplicity="1" />
+          <End Role="DetallesPedidos" Type="Self.DetallesPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidoes">
+              <PropertyRef Name="PedidoID" />
+            </Principal>
+            <Dependent Role="DetallesPedidos">
+              <PropertyRef Name="PedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="DetallesPedidos" Type="Self.DetallesPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallesPedidos">
+              <PropertyRef Name="Producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID">
+          <End Role="TipoDocumentoes" Type="Self.TipoDocumentoes" Multiplicity="1" />
+          <End Role="Empleyes" Type="Self.Empleyes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumentoes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Principal>
+            <Dependent Role="Empleyes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Pedidoes_dbo_Clientes_ClienteID">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Pedidoes" Type="Self.Pedidoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="Pedidoes">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProveedoresProductoes_dbo_Productoes_id">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="1" />
+          <End Role="ProveedoresProductoes" Type="Self.ProveedoresProductoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProveedoresProductoes">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID">
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="1" />
+          <End Role="ProveedoresProductoes" Type="Self.ProveedoresProductoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedors">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="ProveedoresProductoes">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVC_1ContextStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallesPedidos" EntityType="Self.DetallesPedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleyes" EntityType="Self.Empleyes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidoes" EntityType="Self.Pedidoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productoes" EntityType="Self.Productoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProveedoresProductoes" EntityType="Self.ProveedoresProductoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedors" EntityType="Self.Proveedors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDocumentoes" EntityType="Self.TipoDocumentoes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID" Association="Self.FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID">
+            <End Role="TipoDocumentoes" EntitySet="TipoDocumentoes" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID" Association="Self.FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID">
+            <End Role="Pedidoes" EntitySet="Pedidoes" />
+            <End Role="DetallesPedidos" EntitySet="DetallesPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id" Association="Self.FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="DetallesPedidos" EntitySet="DetallesPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID" Association="Self.FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID">
+            <End Role="TipoDocumentoes" EntitySet="TipoDocumentoes" />
+            <End Role="Empleyes" EntitySet="Empleyes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Pedidoes_dbo_Clientes_ClienteID" Association="Self.FK_dbo_Pedidoes_dbo_Clientes_ClienteID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Pedidoes" EntitySet="Pedidoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProveedoresProductoes_dbo_Productoes_id" Association="Self.FK_dbo_ProveedoresProductoes_dbo_Productoes_id">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="ProveedoresProductoes" EntitySet="ProveedoresProductoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID" Association="Self.FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID">
+            <End Role="Proveedors" EntitySet="Proveedors" />
+            <End Role="ProveedoresProductoes" EntitySet="ProveedoresProductoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVC_1Context" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TipoDocuemntoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoDocumentoes" Relationship="Self.FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID" FromRole="Clientes" ToRole="TipoDocumentoes" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.FK_dbo_Pedidoes_dbo_Clientes_ClienteID" FromRole="Clientes" ToRole="Pedidoes" />
+        </EntityType>
+        <EntityType Name="DetallesPedidos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetallesPedidosID" Type="Int32" Nullable="false" />
+          <Property Name="PedidoID" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="Single" Nullable="false" />
+          <Property Name="Producto_id" Type="Int32" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID" FromRole="DetallesPedidos" ToRole="Pedidoes" />
+          <NavigationProperty Name="Productoes" Relationship="Self.FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id" FromRole="DetallesPedidos" ToRole="Productoes" />
+        </EntityType>
+        <EntityType Name="Empleyes">
+          <Key>
+            <PropertyRef Name="EmpleyeId" />
+          </Key>
+          <Property Name="EmpleyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Bono" Type="Int32" Nullable="false" />
+          <Property Name="FehcaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HoraInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TipoDocuemntoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoDocumentoes" Relationship="Self.FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID" FromRole="Empleyes" ToRole="TipoDocumentoes" />
+        </EntityType>
+        <EntityType Name="Pedidoes">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaOrden" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <Property Name="EstadoPedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_dbo_Pedidoes_dbo_Clientes_ClienteID" FromRole="Pedidoes" ToRole="Clientes" />
+          <NavigationProperty Name="DetallesPedidos" Relationship="Self.FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID" FromRole="Pedidoes" ToRole="DetallesPedidos" />
+        </EntityType>
+        <EntityType Name="Productoes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaUltimaCompras" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Bodega" Type="Single" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Cantidad" Type="Single" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DetallesPedidos" Relationship="Self.FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id" FromRole="Productoes" ToRole="DetallesPedidos" />
+          <NavigationProperty Name="ProveedoresProductoes" Relationship="Self.FK_dbo_ProveedoresProductoes_dbo_Productoes_id" FromRole="Productoes" ToRole="ProveedoresProductoes" />
+        </EntityType>
+        <EntityType Name="ProveedoresProductoes">
+          <Key>
+            <PropertyRef Name="ProveedorProductoID" />
+          </Key>
+          <Property Name="ProveedorProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Productoes" Relationship="Self.FK_dbo_ProveedoresProductoes_dbo_Productoes_id" FromRole="ProveedoresProductoes" ToRole="Productoes" />
+          <NavigationProperty Name="Proveedors" Relationship="Self.FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID" FromRole="ProveedoresProductoes" ToRole="Proveedors" />
+        </EntityType>
+        <EntityType Name="Proveedors">
+          <Key>
+            <PropertyRef Name="ProveedorID" />
+          </Key>
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contacto1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contacto2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProveedoresProductoes" Relationship="Self.FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID" FromRole="Proveedors" ToRole="ProveedoresProductoes" />
+        </EntityType>
+        <EntityType Name="TipoDocumentoes">
+          <Key>
+            <PropertyRef Name="TipoDocuemntoID" />
+          </Key>
+          <Property Name="TipoDocuemntoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID" FromRole="TipoDocumentoes" ToRole="Clientes" />
+          <NavigationProperty Name="Empleyes" Relationship="Self.FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID" FromRole="TipoDocumentoes" ToRole="Empleyes" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID">
+          <End Role="TipoDocumentoes" Type="Self.TipoDocumentoes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumentoes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Pedidoes_dbo_Clientes_ClienteID">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Pedidoes" Type="Self.Pedidoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="Pedidoes">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID">
+          <End Role="Pedidoes" Type="Self.Pedidoes" Multiplicity="1" />
+          <End Role="DetallesPedidos" Type="Self.DetallesPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidoes">
+              <PropertyRef Name="PedidoID" />
+            </Principal>
+            <Dependent Role="DetallesPedidos">
+              <PropertyRef Name="PedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="DetallesPedidos" Type="Self.DetallesPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallesPedidos">
+              <PropertyRef Name="Producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID">
+          <End Role="TipoDocumentoes" Type="Self.TipoDocumentoes" Multiplicity="1" />
+          <End Role="Empleyes" Type="Self.Empleyes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumentoes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Principal>
+            <Dependent Role="Empleyes">
+              <PropertyRef Name="TipoDocuemntoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProveedoresProductoes_dbo_Productoes_id">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="1" />
+          <End Role="ProveedoresProductoes" Type="Self.ProveedoresProductoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProveedoresProductoes">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID">
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="1" />
+          <End Role="ProveedoresProductoes" Type="Self.ProveedoresProductoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedors">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="ProveedoresProductoes">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MVC_Context" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="DetallesPedidos" EntityType="Self.DetallesPedidos" />
+          <EntitySet Name="Empleyes" EntityType="Self.Empleyes" />
+          <EntitySet Name="Pedidoes" EntityType="Self.Pedidoes" />
+          <EntitySet Name="Productoes" EntityType="Self.Productoes" />
+          <EntitySet Name="ProveedoresProductoes" EntityType="Self.ProveedoresProductoes" />
+          <EntitySet Name="Proveedors" EntityType="Self.Proveedors" />
+          <EntitySet Name="TipoDocumentoes" EntityType="Self.TipoDocumentoes" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID" Association="Self.FK_dbo_Clientes_dbo_TipoDocumentoes_TipoDocuemntoID">
+            <End Role="TipoDocumentoes" EntitySet="TipoDocumentoes" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Pedidoes_dbo_Clientes_ClienteID" Association="Self.FK_dbo_Pedidoes_dbo_Clientes_ClienteID">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Pedidoes" EntitySet="Pedidoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID" Association="Self.FK_dbo_DetallesPedidos_dbo_Pedidoes_PedidoID">
+            <End Role="Pedidoes" EntitySet="Pedidoes" />
+            <End Role="DetallesPedidos" EntitySet="DetallesPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id" Association="Self.FK_dbo_DetallesPedidos_dbo_Productoes_Producto_id">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="DetallesPedidos" EntitySet="DetallesPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID" Association="Self.FK_dbo_Empleyes_dbo_TipoDocumentoes_TipoDocuemntoID">
+            <End Role="TipoDocumentoes" EntitySet="TipoDocumentoes" />
+            <End Role="Empleyes" EntitySet="Empleyes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProveedoresProductoes_dbo_Productoes_id" Association="Self.FK_dbo_ProveedoresProductoes_dbo_Productoes_id">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="ProveedoresProductoes" EntitySet="ProveedoresProductoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID" Association="Self.FK_dbo_ProveedoresProductoes_dbo_Proveedors_ProveedorID">
+            <End Role="Proveedors" EntitySet="Proveedors" />
+            <End Role="ProveedoresProductoes" EntitySet="ProveedoresProductoes" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVC_1ContextStoreContainer" CdmEntityContainer="MVC_Context">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="MVC_1Context.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MVC_1Context.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="MVC_1Context.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="MVC_1Context.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MVC_1Context.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="MVC_1Context.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="MVC_1Context.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="TipoDocuemntoID" ColumnName="TipoDocuemntoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallesPedidos">
+            <EntityTypeMapping TypeName="MVC_1Context.DetallesPedidos">
+              <MappingFragment StoreEntitySet="DetallesPedidos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DetallesPedidosID" ColumnName="DetallesPedidosID" />
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Producto_id" ColumnName="Producto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleyes">
+            <EntityTypeMapping TypeName="MVC_1Context.Empleyes">
+              <MappingFragment StoreEntitySet="Empleyes">
+                <ScalarProperty Name="EmpleyeId" ColumnName="EmpleyeId" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Bono" ColumnName="Bono" />
+                <ScalarProperty Name="FehcaNacimiento" ColumnName="FehcaNacimiento" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TipoDocuemntoID" ColumnName="TipoDocuemntoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidoes">
+            <EntityTypeMapping TypeName="MVC_1Context.Pedidoes">
+              <MappingFragment StoreEntitySet="Pedidoes">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="FechaOrden" ColumnName="FechaOrden" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="EstadoPedido" ColumnName="EstadoPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productoes">
+            <EntityTypeMapping TypeName="MVC_1Context.Productoes">
+              <MappingFragment StoreEntitySet="Productoes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="FechaUltimaCompras" ColumnName="FechaUltimaCompras" />
+                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProveedoresProductoes">
+            <EntityTypeMapping TypeName="MVC_1Context.ProveedoresProductoes">
+              <MappingFragment StoreEntitySet="ProveedoresProductoes">
+                <ScalarProperty Name="ProveedorProductoID" ColumnName="ProveedorProductoID" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedors">
+            <EntityTypeMapping TypeName="MVC_1Context.Proveedors">
+              <MappingFragment StoreEntitySet="Proveedors">
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contacto1" ColumnName="Contacto1" />
+                <ScalarProperty Name="Contacto2" ColumnName="Contacto2" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDocumentoes">
+            <EntityTypeMapping TypeName="MVC_1Context.TipoDocumentoes">
+              <MappingFragment StoreEntitySet="TipoDocumentoes">
+                <ScalarProperty Name="TipoDocuemntoID" ColumnName="TipoDocuemntoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="MVC_1Context.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
